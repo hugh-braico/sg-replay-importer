@@ -1,4 +1,4 @@
-# sg-replay-importer
+# Skullgirls Replay Importer
 
 Convenient tool to append new Skullgirls replay files to your existing ones 
 without manually renaming them all.
