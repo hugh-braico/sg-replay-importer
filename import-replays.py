@@ -42,10 +42,17 @@ def validate_loose_files(ini_list, rnd_list, danisen):
             raise Exception(f"Found a round_{replay_code}.rnd, but no round_{replay_code}.ini!")
     # Danisen sets: 5-9 replays only, enforces same players for each set
     if danisen:
+        prompt_for_confirmation = False
         if len(ini_list) < 5: 
-            raise Exception(f"Not a valid danisen set - not enough replays for a FT5!")
+            print(f" Warning - not a valid danisen set, not enough replays for a FT5!")
+            prompt_for_confirmation = True
         if len(ini_list) > 9: 
-            raise Exception(f"Not a valid danisen set - too many replays for a FT5!")
+            print(f" Warning - not a valid danisen set, too many replays for a FT5!")
+            prompt_for_confirmation = True
+        if prompt_for_confirmation:
+            confirmation = input("Is this ok? (y/n): ")
+            if not confirmation or confirmation[0].lower() != "y":
+                raise Exception(f"Invalid number of replays for a danisen set.")
         first_p1 = get_ini_value(ini_list[0], 'P1Name')
         first_p2 = get_ini_value(ini_list[0], 'P2Name')
         for ini in ini_list[1:]:
@@ -136,27 +143,28 @@ def import_zip_file(zip_file, replay_folder, staging_folder, replay_count):
 
 # Main function
 if __name__ == "__main__":
-    # Parse out arguments 
-    parser = argparse.ArgumentParser()
-    parser.add_argument('--replayfolder', '-f', help='Path to the replays folder', required=True)
-    parser.add_argument('--inputfiles', '-i', nargs='+', help='list of input files to process', required=True)
-    parser.add_argument('--danisen', '-d', action='store_true', help='Danisen mode. 5-9 replays per zip only, enforce same players for each set')
-    args = parser.parse_args()
-    replay_folder = args.replayfolder
-    staging_folder = os.path.join(replay_folder, ".replay-importer-temp/")
-    input_files = sorted(args.inputfiles)
-    replay_count = get_current_replay_count(replay_folder)
-    original_replay_count = replay_count
-    danisen = args.danisen
+
+    # This code is for running as a python script
+    # parser = argparse.ArgumentParser()
+    # parser.add_argument('--replayfolder', '-f', help='Path to the replays folder', required=True)
+    # parser.add_argument('--inputfiles', '-i', nargs='+', help='list of input files to process', required=True)
+    # parser.add_argument('--danisen', '-d', action='store_true', help='Danisen mode. 5-9 replays per zip only, enforce same players for each set')
+    # args = parser.parse_args()
+    # replay_folder = args.replayfolder
+    # staging_folder = os.path.join(replay_folder, ".replay-importer-temp/")
+    # input_files = sorted(args.inputfiles)
+    # replay_count = get_current_replay_count(replay_folder)
+    # original_replay_count = replay_count
+    # danisen = args.danisen
 
     ## If I'm packaging this into an exe using pyinstaller, I will use this code
     ## to generate my arguments intead  
-    # replay_folder = re.fullmatch(r'(.*\\)(.*)\.exe', sys.argv[0]).group(1)
-    # input_files = sys.argv[1:]
-    # staging_folder = os.path.join(replay_folder, ".replay-importer-temp/")
-    # replay_count = get_current_replay_count(replay_folder)
-    # original_replay_count = replay_count
-    # danisen = False
+    replay_folder = re.fullmatch(r'(.*\\)(.*)\.exe', sys.argv[0]).group(1)
+    input_files = sys.argv[1:]
+    staging_folder = os.path.join(replay_folder, ".replay-importer-temp/")
+    replay_count = get_current_replay_count(replay_folder)
+    original_replay_count = replay_count
+    danisen = False
 
     # Split up each input file by extension
     ini_list = list(filter(lambda f: re.search('round_\d{4}\.ini$', f), input_files))

@@ -5,3 +5,4 @@ round_*
 exe-versions/
 dist/
 build/
+__pycache__/

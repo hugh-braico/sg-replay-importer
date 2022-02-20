@@ -18,4 +18,10 @@ supported at the moment.
 **NOTE:** Don't put loose replay files in the replay folder before dragging them 
 onto the importer. The importer will get confused and think that they are part 
 of the existing replays. Zip files can be inside the replay folder if you want
-though. 
+though.
+
+## How to package your own release to exe
+
+```bash
+pyinstaller --onefile -i bigband.ico import-replays.py
+```
