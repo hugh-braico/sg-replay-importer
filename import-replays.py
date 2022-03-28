@@ -25,6 +25,9 @@ def get_ini_value(ini, key):
     match = re.search(f'{key} (.*)\n', ini_text)
     if match:
         return match.group(1)
+    elif key in ['P1Name', 'P2Name']:
+        # Local replays don't have player name fields. 
+        return ""
     else:
         raise Exception(f"Failed to read key {key} from ini file {ini}!")
 
