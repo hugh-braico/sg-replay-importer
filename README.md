@@ -15,10 +15,9 @@ supported at the moment.
    exe. The importer will rename them and then append them onto your existing
    replays.
 
-**NOTE:** Don't put loose replay files in the replay folder before dragging them 
-onto the importer. The importer will get confused and think that they are part 
-of the existing replays. Zip files can be inside the replay folder if you want
-though.
+**NOTE:** Don't put replay files or zips in the replay folder before dragging 
+them onto the importer. The importer will get confused and think that they are
+part of the existing replays.
 
 ## How to package your own release to exe
 
