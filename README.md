@@ -1,16 +1,18 @@
 # Skullgirls Replay Importer
 
 Convenient tool to append new Skullgirls replay files to your existing ones 
-without manually renaming them all. Only Windows is supported.
+in bulk without manually renaming them all.
+
+Only Windows is supported.
 
 ## How to use
 
 1. Download the 
    [latest exe](https://github.com/hugh-braico/sg-replay-importer/releases/download/v0.3/import-replays.exe).
 1. Put the exe in your replays folder (`Documents\Skullgirls\Replays_SG2EPlus\<steam_user_number>`).
-1. Drag and drop new replay files (or zip files containing replay files) onto
+1. Drag and drop new replay files (and/or zip files containing replay files) onto
    the exe. The importer will rename them and then append them onto your existing
-   replays.
+   replays. You can drag lots of them at once if you want.
 
 **NOTE:** Don't put replay files or zips in the replay folder before dragging 
 them onto the importer. The importer will get confused and think that they are
