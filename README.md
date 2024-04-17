@@ -7,14 +7,17 @@ without manually renaming them all. Only Windows is supported.
 
 1. Download the 
    [latest exe](https://github.com/hugh-braico/sg-replay-importer/releases/download/v0.3/import-replays.exe).
-1. Put the release exe in your replays folder.
-1. Drag and drop new replay files (or zips containing replay files) onto the 
-   exe. The importer will rename them and then append them onto your existing
+1. Put the exe in your replays folder (`Documents\Skullgirls\Replays_SG2EPlus\<steam_user_number>`).
+1. Drag and drop new replay files (or zip files containing replay files) onto
+   the exe. The importer will rename them and then append them onto your existing
    replays.
 
 **NOTE:** Don't put replay files or zips in the replay folder before dragging 
 them onto the importer. The importer will get confused and think that they are
 part of the existing replays. Drag them from a different location.
+
+Right now archive file formats other than zip (rar, 7z, tar, etc) are not 
+supported. Pull requests welcome!
 
 ## What about MacOS/Linux? 
 
