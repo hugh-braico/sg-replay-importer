@@ -9,7 +9,7 @@ supported at the moment.
 ## How to use
 
 1. Download the 
-   [release exe](https://github.com/hugh-braico/sg-replay-importer/releases).
+   [latest exe](https://github.com/hugh-braico/sg-replay-importer/releases/download/v0.3/import-replays.exe).
 1. Put the release exe in your replays folder.
 1. Drag and drop new replay files (or zips containing replay files) onto the 
    exe. The importer will rename them and then append them onto your existing
