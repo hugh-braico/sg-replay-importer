@@ -29,7 +29,9 @@ Pull requests welcome!
 
 If you're not the type to trust a random exe that someone else built and could
 potentially do anything, you can build your own from source by cloning this
-repo and running these commands from the root directory.
+repo and running these commands from the root directory. If you're going to do
+this out of caution, it makes sense to also give `import-replays.py` a thorough
+read to make sure you understand what it's doing.
 
 You'll need python3 and pip.
 
