@@ -13,7 +13,7 @@ def get_current_replay_count(replay_folder):
     # Get highest replay ini, return its number
     current_replay_files = sorted(glob(os.path.join(replay_folder, 'round_*.ini')), reverse=True)
     if current_replay_files:
-        return int(re.search('(\d{4})\.ini$', current_replay_files[0]).group(1))
+        return int(re.search('(\d{3}\d+)\.ini$', current_replay_files[0]).group(1))
     else: 
         return 0
 
@@ -36,11 +36,11 @@ def get_ini_value(ini, key):
 def validate_loose_files(ini_list, rnd_list, danisen):
     # Every .ini must have a corresponding .rnd, and vice versa
     for ini in ini_list:
-        replay_code = re.search('(\d{4}).ini$', ini).group(1)
+        replay_code = re.search('(\d{3}\d+).ini$', ini).group(1)
         if not any([re.search(f'round_{replay_code}\.rnd$', f) for f in rnd_list]):
             raise Exception(f"Found a round_{replay_code}.ini, but no round_{replay_code}.rnd!")
     for rnd in rnd_list: 
-        replay_code = re.search('(\d{4}).rnd$', rnd).group(1)
+        replay_code = re.search('(\d{3}\d+).rnd$', rnd).group(1)
         if not any([re.search(f'round_{replay_code}\.ini$', f) for f in ini_list]):
             raise Exception(f"Found a round_{replay_code}.rnd, but no round_{replay_code}.ini!")
     # Danisen sets: 5-9 replays only, enforces same players for each set
@@ -126,7 +126,7 @@ def validate_input_files(input_files, ini_list, rnd_list, zip_list, staging_fold
 # Imports a list of loose replay files, returns the new replay_count
 def import_loose_files(ini_list, rnd_list, replay_folder, replay_count):
     for ini, rnd in zip(ini_list, rnd_list):
-        replay_code = re.search('(\d{4}).ini$', ini).group(1)
+        replay_code = re.search('(\d{3}\d+).ini$', ini).group(1)
         replay_count += 1
         copyfile(ini, os.path.join(replay_folder, f"round_{replay_count:04d}.ini"))
         copyfile(rnd, os.path.join(replay_folder, f"round_{replay_count:04d}.rnd"))
@@ -167,11 +167,13 @@ if __name__ == "__main__":
     staging_folder = os.path.join(replay_folder, ".replay-importer-temp/")
     replay_count = get_current_replay_count(replay_folder)
     original_replay_count = replay_count
+
+    # enable this for Danisen
     danisen = False
 
     # Split up each input file by extension
-    ini_list = list(filter(lambda f: re.search('round_\d{4}\.ini$', f), input_files))
-    rnd_list = list(filter(lambda f: re.search('round_\d{4}\.rnd$', f), input_files))
+    ini_list = list(filter(lambda f: re.search('round_\d{3}\d+\.ini$', f), input_files))
+    rnd_list = list(filter(lambda f: re.search('round_\d{3}\d+\.rnd$', f), input_files))
     zip_list = list(filter(lambda f: re.search('\.zip$', f), input_files))
 
     # Do some validation on the input files first
