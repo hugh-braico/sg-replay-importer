@@ -8,7 +8,7 @@ Only Windows is supported.
 ## How to use
 
 1. Download the 
-   [latest exe](https://github.com/hugh-braico/sg-replay-importer/releases/download/v0.3/import-replays.exe).
+   [latest exe](https://github.com/hugh-braico/sg-replay-importer/releases/download/v0.4/import-replays.exe).
 1. Put the exe in your replays folder (`Documents\Skullgirls\Replays_SG2EPlus\<steam_user_number>`).
 1. Drag and drop new replay files (and/or zip files containing replay files) onto
    the exe. The importer will rename them and then append them onto your existing
